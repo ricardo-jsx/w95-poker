@@ -15,5 +15,6 @@ export const IconStyled = styled.div`
 
   span {
     color: white;
+    cursor: default;
   }
 `;
