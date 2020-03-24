@@ -1,8 +1,12 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
 
 import Desktop from './pages/Desktop';
 import Taskbar from './components/Taskbar';
+
+import GlobalFonts from 'fonts/fonts';
+import store from './store';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -25,13 +29,16 @@ const theme = {
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <main style={{ height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column' }}>
-        <Desktop />
-        <Taskbar />
-      </main>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalFonts />
+        <GlobalStyle />
+        <main style={{ height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column' }}>
+          <Desktop />
+          <Taskbar />
+        </main>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
