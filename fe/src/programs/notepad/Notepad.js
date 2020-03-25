@@ -1,17 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { isNotepadOpen } from 'store/programs/notepad/reducer';
-
-export default function Notepad({ zIndex }) {
-  const isOpen = useSelector(isNotepadOpen);
-
-  if (!isOpen) return null;
-
+export default function Notepad({ initialContent }) {
   return (
     <div
       style={{
-        zIndex,
         width: '300px',
         height: '300px',
         background: 'white',
@@ -21,7 +14,15 @@ export default function Notepad({ zIndex }) {
         fontFamily: 'Fixedsys',
       }}
     >
-      Hello From notepad!
+      {initialContent}
     </div>
   );
 }
+
+Notepad.propTypes = {
+  initialContent: PropTypes.string,
+};
+
+Notepad.defaultProps = {
+  initialContent: '',
+};
