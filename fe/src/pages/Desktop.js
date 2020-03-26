@@ -11,7 +11,7 @@ export default function Desktop() {
     <DesktopStyled>
       <Icons.Text
         name="README"
-        renderProgram={(iconImg) => <Notepad initialContent={readme.content} name="README" iconImg={iconImg} />}
+        renderProgram={(iconSrc) => <Notepad initialContent={readme.content} name="README" iconSrc={iconSrc} />}
       />
       <Icons.Poker name="Poker" />
       <Icons.RecycleBin name="Recycle Bin" />

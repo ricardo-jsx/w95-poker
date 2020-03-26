@@ -13,7 +13,7 @@ export default function Icon({ img, name, renderProgram }) {
       {iconImg}
       <span onMouseDown={(e) => e.preventDefault()}>{name}</span>
 
-      {isProgramOpen && renderProgram(iconImg)}
+      {isProgramOpen && renderProgram(img)}
     </IconStyled>
   );
 }
