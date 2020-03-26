@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DraggableStyled = styled.article`
+export const DraggableProgramStyled = styled.article`
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -17,9 +17,23 @@ export const DraggableStyled = styled.article`
     width: 100%;
     height: 24px;
 
-    img {
+    > img {
       height: 18px;
       margin: 0 2px;
+    }
+
+    .actions {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+
+      button {
+        margin: 0 2px;
+        width: 18px;
+        background-color: ${(props) => props.theme.silver};
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700;
+      }
     }
   }
 `;

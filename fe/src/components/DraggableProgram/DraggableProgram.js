@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
-import { DraggableStyled } from './DraggableProgram.styled';
+import { DraggableProgramStyled } from './DraggableProgram.styled';
 
 export default function DraggableProgram({ handle, children, defaultPosition }) {
   return (
     <Draggable handle={handle} defaultPosition={defaultPosition} grid={[25, 25]}>
-      <DraggableStyled>{children}</DraggableStyled>
+      <DraggableProgramStyled>{children}</DraggableProgramStyled>
     </Draggable>
   );
 }
