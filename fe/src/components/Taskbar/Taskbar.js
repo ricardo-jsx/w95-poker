@@ -1,6 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { getRunningProcessesInOrder } from 'store/ducks/processes';
+
+import Process from './Process';
 import { TaskbarStyled } from './Taskbar.styled';
 
 export default function Taskbar() {
-  return <TaskbarStyled />;
+  const processes = useSelector(getRunningProcessesInOrder);
+
+  return (
+    <TaskbarStyled>
+      {processes.map((process) => (
+        <Process process={process} key={process.id} />
+      ))}
+    </TaskbarStyled>
+  );
 }

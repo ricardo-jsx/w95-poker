@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DraggableProgram from 'components/DraggableProgram/index';
+
 import { NotepadStyled } from './Notepad.styled';
+import DraggableProgram from 'components/DraggableProgram/index';
 
-export default function Notepad({ initialContent, name, iconImg, window }) {
-  const x = window.innerWidth / 2 - 250;
-  const y = window.innerHeight / 2 - 250;
-
+export default function Notepad({ initialContent, process }) {
   return (
-    <DraggableProgram defaultPosition={{ x, y }}>
-      <DraggableProgram.Title>
-        {iconImg} <span>{name} - Notepad</span>
-      </DraggableProgram.Title>
+    <DraggableProgram processId={process.id}>
+      <DraggableProgram.Header process={process} programName={Notepad.name} />
       <NotepadStyled>{initialContent}</NotepadStyled>
     </DraggableProgram>
   );
@@ -19,16 +15,13 @@ export default function Notepad({ initialContent, name, iconImg, window }) {
 
 Notepad.propTypes = {
   initialContent: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  iconImg: PropTypes.node,
-  window: PropTypes.shape({
-    innerWidth: PropTypes.number,
-    innerHeigth: PropTypes.number,
-  }),
+  process: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 Notepad.defaultProps = {
   initialContent: '',
-  iconImg: null,
-  window,
 };
