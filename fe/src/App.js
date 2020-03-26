@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
 const theme = {
   teal: '#008080',
   silver: '#c0c0c0',
+  darkBlue: '#0000AA',
 };
 
 function App() {
