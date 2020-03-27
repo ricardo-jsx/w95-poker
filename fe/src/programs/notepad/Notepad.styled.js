@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const NotepadStyled = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   background: white;
   font-family: 'FixedSys';
 `;

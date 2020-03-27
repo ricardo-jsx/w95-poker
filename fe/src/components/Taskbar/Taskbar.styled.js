@@ -4,7 +4,7 @@ export const TaskbarStyled = styled.footer`
   display: flex;
   align-items: center;
   background-color: ${(props) => props.theme.silver};
-  height: 36px;
+  height: 30px;
   width: 100vw;
   padding: 0 2px;
   border-top: ridge 4px white;

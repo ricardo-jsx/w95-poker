@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const DraggableProgramStyled = styled.article`
-  display: flex;
+  display: ${(props) => (props.isMinimized ? 'none' : 'flex')};
   flex-direction: column;
-  width: fit-content;
+  width: 500px;
+  height: 500px;
   background: ${(props) => props.theme.silver};
   padding: 4px;
 `;

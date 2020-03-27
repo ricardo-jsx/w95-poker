@@ -2,11 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 import { DraggableProgramStyled } from './DraggableProgram.styled';
+import { useSelector } from 'react-redux';
+import { isProcessMinimized } from 'store/ducks/processes';
 
-export default function DraggableProgram({ handle, children, defaultPosition }) {
+export default function DraggableProgram({ processId, children, defaultPosition }) {
+  const isMinimized = useSelector(isProcessMinimized(processId));
+
   return (
-    <Draggable handle={handle} defaultPosition={defaultPosition} grid={[25, 25]}>
-      <DraggableProgramStyled>{children}</DraggableProgramStyled>
+    <Draggable handle=".header" defaultPosition={defaultPosition} grid={[25, 25]} bounds={{ top: 0 }}>
+      <DraggableProgramStyled isMinimized={isMinimized}>{children}</DraggableProgramStyled>
     </Draggable>
   );
 }
@@ -21,6 +25,5 @@ DraggableProgram.propTypes = {
 };
 
 DraggableProgram.defaultProps = {
-  handle: '.header',
   defaultPosition: {},
 };

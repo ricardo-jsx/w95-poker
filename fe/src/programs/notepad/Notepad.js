@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DraggableProgram from 'components/DraggableProgram/index';
+
 import { NotepadStyled } from './Notepad.styled';
+import DraggableProgram from 'components/DraggableProgram/index';
 import useProcess from 'programs/hooks/useProcess';
 
 export default function Notepad({ initialContent, name, iconSrc, window }) {
@@ -12,8 +13,8 @@ export default function Notepad({ initialContent, name, iconSrc, window }) {
   const { processId } = useProcess(processName, iconSrc);
 
   return (
-    <DraggableProgram defaultPosition={{ x, y }}>
-      <DraggableProgram.Header processName={processName} processIcon={iconSrc} />
+    <DraggableProgram defaultPosition={{ x, y }} processId={processId}>
+      <DraggableProgram.Header processName={processName} processIcon={iconSrc} processId={processId} />
       <NotepadStyled>{initialContent}</NotepadStyled>
     </DraggableProgram>
   );
