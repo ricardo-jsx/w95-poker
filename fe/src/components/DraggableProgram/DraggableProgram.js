@@ -21,6 +21,6 @@ DraggableProgram.propTypes = {
 };
 
 DraggableProgram.defaultProps = {
-  handle: '.title',
+  handle: '.header',
   defaultPosition: {},
 };

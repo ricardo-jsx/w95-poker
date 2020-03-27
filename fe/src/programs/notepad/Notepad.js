@@ -5,16 +5,15 @@ import { NotepadStyled } from './Notepad.styled';
 import useProcess from 'programs/hooks/useProcess';
 
 export default function Notepad({ initialContent, name, iconSrc, window }) {
-  const { processId } = useProcess(name, iconSrc);
+  const processName = `${name} - Notepad`;
   const x = window.innerWidth / 2 - 250;
   const y = window.innerHeight / 2 - 250;
 
+  const { processId } = useProcess(processName, iconSrc);
+
   return (
     <DraggableProgram defaultPosition={{ x, y }}>
-      <DraggableProgram.Title>
-        <img src={iconSrc} alt={name} />
-        <span>{name} - Notepad</span>
-      </DraggableProgram.Title>
+      <DraggableProgram.Header programName={name} programIcon={iconSrc} />
       <NotepadStyled>{initialContent}</NotepadStyled>
     </DraggableProgram>
   );

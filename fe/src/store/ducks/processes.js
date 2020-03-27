@@ -1,19 +1,7 @@
-const INITIAL_STATE = {
-  running: [],
-  maxIndex: 1,
-};
-
-export default function reducer(state = INITIAL_STATE, action) {
+export default function reducer(state = [], action) {
   switch (action.type) {
     case 'START_PROCESS': {
-      const { id, name, icon } = action.payload;
-      const maxIndex = state.maxIndex + 1;
-
-      return {
-        ...state,
-        maxIndex,
-        running: [...state.running, { id, name, icon, maxIndex }],
-      };
+      return [...state, action.payload];
     }
 
     default:
@@ -27,3 +15,5 @@ export function startProcess(id, name, icon) {
     payload: { id, name, icon },
   };
 }
+
+export const getProcesses = (state) => state.processes;

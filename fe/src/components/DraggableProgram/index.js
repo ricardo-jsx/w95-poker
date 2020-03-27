@@ -1,6 +1,6 @@
 import DraggableProgram from './DraggableProgram';
-import Title from './Title';
+import Header from './Header';
 
-DraggableProgram.Title = Title;
+DraggableProgram.Header = Header;
 
 export default DraggableProgram;
