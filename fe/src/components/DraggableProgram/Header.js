@@ -7,10 +7,10 @@ import Minimize from './imgs/minimize.png';
 import Maximize from './imgs/maximize.png';
 import Close from './imgs/close.png';
 
-export default function Header({ programName, programIcon }) {
+export default function Header({ processName, processIcon }) {
   return (
-    <HeaderStyled programIcon={programIcon} className="header">
-      <span>{programName}</span>
+    <HeaderStyled processIcon={processIcon} className="header">
+      <span>{processName}</span>
       <div className="actions">
         <ActionStyled icon={Minimize} />
         <ActionStyled icon={Maximize} />
@@ -21,5 +21,6 @@ export default function Header({ programName, programIcon }) {
 }
 
 Header.propTypes = {
-  children: PropTypes.node.isRequired,
+  processName: PropTypes.string.isRequired,
+  processIcon: PropTypes.string.isRequired,
 };

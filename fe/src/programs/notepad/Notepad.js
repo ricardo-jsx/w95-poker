@@ -13,7 +13,7 @@ export default function Notepad({ initialContent, name, iconSrc, window }) {
 
   return (
     <DraggableProgram defaultPosition={{ x, y }}>
-      <DraggableProgram.Header programName={name} programIcon={iconSrc} />
+      <DraggableProgram.Header processName={processName} processIcon={iconSrc} />
       <NotepadStyled>{initialContent}</NotepadStyled>
     </DraggableProgram>
   );

@@ -21,7 +21,7 @@ export const HeaderStyled = styled.header`
   &:before {
     content: '';
     display: inline-block;
-    background-image: url(${(props) => props.programIcon});
+    background-image: url(${(props) => props.processIcon});
     background-size: 18px;
     width: 18px;
     height: 18px;

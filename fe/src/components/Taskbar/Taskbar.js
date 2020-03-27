@@ -11,7 +11,7 @@ export default function Taskbar() {
   return (
     <TaskbarStyled>
       {processes.map((process) => (
-        <Process process={process} />
+        <Process process={process} key={process.id} />
       ))}
     </TaskbarStyled>
   );
