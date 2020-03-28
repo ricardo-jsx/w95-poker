@@ -4,13 +4,10 @@ import PropTypes from 'prop-types';
 import { NotepadStyled } from './Notepad.styled';
 import DraggableProgram from 'components/DraggableProgram/index';
 
-export default function Notepad({ initialContent, window, process }) {
-  const x = window.innerWidth / 2 - 250;
-  const y = window.innerHeight / 2 - 250;
-
+export default function Notepad({ initialContent, process }) {
   return (
-    <DraggableProgram defaultPosition={{ x, y }} processId={process.id}>
-      <DraggableProgram.Header process={process} programName={Notepad.name || 'TODO'} />
+    <DraggableProgram processId={process.id}>
+      <DraggableProgram.Header process={process} programName={Notepad.name} />
       <NotepadStyled>{initialContent}</NotepadStyled>
     </DraggableProgram>
   );
@@ -23,13 +20,8 @@ Notepad.propTypes = {
     name: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
   }).isRequired,
-  window: PropTypes.shape({
-    innerWidth: PropTypes.number,
-    innerHeigth: PropTypes.number,
-  }),
 };
 
 Notepad.defaultProps = {
   initialContent: '',
-  window,
 };

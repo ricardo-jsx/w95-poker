@@ -1,4 +1,4 @@
-import { find, map, equals, prop, ifElse, pipe, assoc, identity, propOr, reject } from 'ramda';
+import { find, map, equals, prop, ifElse, pipe, assoc, identity, propOr, reject, merge, __ } from 'ramda';
 
 const INITIAL_STATE = {
   running: [],
@@ -18,6 +18,15 @@ export default function reducer(state = INITIAL_STATE, action) {
     case 'MINIMIZE_PROCESS': {
       const running = map(
         ifElse(pipe(prop('id'), equals(action.payload)), assoc('minimized', true), identity),
+        state.running
+      );
+
+      return { ...state, running };
+    }
+
+    case 'MAXIMIZE_PROCESS': {
+      const running = map(
+        ifElse(pipe(prop('id'), equals(action.payload)), merge(__, { maximized: true, minimized: false }), identity),
         state.running
       );
 
@@ -44,10 +53,14 @@ export const focusProcess = (id) => ({ type: 'FOCUS_PROCESS', payload: id });
 export const getRunningProcesses = (state) => state.processes.running;
 export const getRunningProcessesId = pipe(getRunningProcesses, map(prop('id')));
 export const getRunningProcessesInOrder = (state) => state.processes.executionOrder;
-export const isProcessMinimized = (id) =>
+
+const getProcessProperty = (property, or) => (processId) =>
   pipe(
     prop('processes'),
     prop('running'),
-    find((process) => equals(id, process.id)),
-    propOr(false, 'minimized')
+    find((process) => equals(processId, process.id)),
+    propOr(or, property)
   );
+
+export const isProcessMinimized = getProcessProperty('minimized', false);
+export const isProcessMaximized = getProcessProperty('maximized', false);
