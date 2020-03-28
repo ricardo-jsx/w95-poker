@@ -42,6 +42,7 @@ export const closeProcess = (id) => ({ type: 'CLOSE_PROCESS', payload: id });
 export const focusProcess = (id) => ({ type: 'FOCUS_PROCESS', payload: id });
 
 export const getRunningProcesses = (state) => state.processes.running;
+export const getRunningProcessesId = pipe(getRunningProcesses, map(prop('id')));
 export const getRunningProcessesInOrder = (state) => state.processes.executionOrder;
 export const isProcessMinimized = (id) =>
   pipe(

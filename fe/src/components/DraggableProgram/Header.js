@@ -8,12 +8,14 @@ import Minimize from './imgs/minimize.png';
 import Maximize from './imgs/maximize.png';
 import Close from './imgs/close.png';
 
-export default function Header({ processId, processName, processIcon }) {
-  const { minimize, maximize, close } = useProgramActions(processId);
+export default function Header({ process, programName }) {
+  const { minimize, maximize, close } = useProgramActions(process.id);
 
   return (
-    <HeaderStyled processIcon={processIcon} className="header">
-      <span>{processName}</span>
+    <HeaderStyled processIcon={process.icon} className="header">
+      <span>
+        {process.name} - {programName}
+      </span>
       <div className="actions">
         <ActionStyled icon={Minimize} onClick={minimize} />
         <ActionStyled icon={Maximize} onClick={maximize} />
@@ -24,7 +26,5 @@ export default function Header({ processId, processName, processIcon }) {
 }
 
 Header.propTypes = {
-  processId: PropTypes.string.isRequired,
-  processName: PropTypes.string.isRequired,
-  processIcon: PropTypes.string.isRequired,
+  programName: PropTypes.string.isRequired,
 };
