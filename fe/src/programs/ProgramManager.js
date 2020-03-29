@@ -34,7 +34,7 @@ export default function ProgramManager({ children }) {
     <>
       {children(onStartProgram)}
       {programs.map(({ Component, props, process }) => (
-        <Component {...props} process={process} />
+        <Component {...props} process={process} key={process.id} />
       ))}
     </>
   );

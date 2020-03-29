@@ -26,6 +26,7 @@ const theme = {
   teal: '#008080',
   silver: '#c0c0c0',
   darkBlue: '#0000AA',
+  japaneseLaurel: '#2F7C37',
 };
 
 function App() {

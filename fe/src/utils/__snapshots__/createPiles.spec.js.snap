@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils/createPiles should create 3 piles with 6 cards 1`] = `
+Array [
+  Array [
+    Object {
+      "facingUp": true,
+      "value": "AH",
+    },
+  ],
+  Array [
+    Object {
+      "value": "2H",
+    },
+    Object {
+      "facingUp": true,
+      "value": "3H",
+    },
+  ],
+  Array [
+    Object {
+      "value": "4H",
+    },
+    Object {
+      "value": "5H",
+    },
+    Object {
+      "facingUp": true,
+      "value": "6H",
+    },
+  ],
+]
+`;

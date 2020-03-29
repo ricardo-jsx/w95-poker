@@ -14,7 +14,7 @@ function usePosition(isMaximized, window) {
   }, [isMaximized]);
 
   useEffect(() => {
-    setPosition({ x: window.innerWidth / 2 - 250, y: window.innerHeight / 2 - 250 });
+    setPosition({ x: window.innerWidth / 2 - 400, y: window.innerHeight / 2 - 400 });
   }, [window]);
 
   const onDragStop = (_, data) => setPosition({ x: data.lastX, y: data.lastY });
