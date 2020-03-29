@@ -30,8 +30,6 @@ export default function ProgramManager({ children }) {
     return pipe(values, removeDeadProcesses, addProcessProps)(runningPrograms);
   }, [processesId, runningPrograms, processes]);
 
-  console.log(programs);
-
   return (
     <>
       {children(onStartProgram)}

@@ -28,7 +28,7 @@ export default function DraggableProgram({ processId, children, window }) {
   const { position, onDragStop } = usePosition(isMaximized, window);
 
   return (
-    <Draggable handle=".header" position={position} onStop={onDragStop} grid={[25, 25]}>
+    <Draggable handle=".header" position={position} onStop={onDragStop}>
       <DraggableProgramStyled isMinimized={isMinimized} isMaximized={isMaximized}>
         {children}
       </DraggableProgramStyled>
