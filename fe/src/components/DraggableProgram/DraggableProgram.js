@@ -14,7 +14,7 @@ export default function DraggableProgram({ processId, children, window }) {
   const rnd = useRnd(window, isMaximized);
 
   return (
-    <Rnd {...rnd} dragHandleClassName="header">
+    <Rnd {...rnd} dragHandleClassName="header" minWidth="300" minHeight="300">
       <DraggableProgramStyled isMinimized={isMinimized} isMaximized={isMaximized}>
         {children}
       </DraggableProgramStyled>

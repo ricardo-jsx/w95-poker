@@ -19,6 +19,7 @@ export default function useRnd(window, isMaximized) {
   function onDragStop(_e, { x, y }) {
     setPosition({ x, y });
   }
+
   function onResizeStop(_e, _direction, ref, _delta, position) {
     const { width, height } = ref.style;
     setSize({ width, height });
