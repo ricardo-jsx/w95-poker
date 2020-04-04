@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const DraggableProgramStyled = styled.article`
   display: ${(props) => (props.isMinimized ? 'none' : 'flex')};
   flex-direction: column;
-  width: ${(props) => (props.isMaximized ? '100vw' : '500px')};
-  height: ${(props) => (props.isMaximized ? 'calc(100vh - 30px)' : '500px')};
+  width: 100%;
+  height: 100%;
   background: ${(props) => props.theme.silver};
   padding: 4px;
 `;
