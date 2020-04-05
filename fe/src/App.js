@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
+  white: '#FFF',
   teal: '#008080',
   silver: '#c0c0c0',
   darkBlue: '#0000AA',
