@@ -16,14 +16,14 @@ export const ProcessStyled = styled.button`
   display: flex;
   align-items: center;
   padding: 2px;
-  border: 2px inset ${(props) => props.theme.silver};
+  border: 2px ${(props) => (props.isMinimized ? 'outset' : 'inset')} ${(props) => props.theme.silver};
   width: 170px;
   font-family: Fixedsys;
   font-weight: bold;
   outline: none;
 
   &:active {
-    border-style: outset;
+    border-style: ${(props) => (props.isMinimized ? 'inset' : 'outset')};
   }
 
   &:before {
