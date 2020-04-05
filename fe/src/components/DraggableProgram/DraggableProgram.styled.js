@@ -5,8 +5,10 @@ export const DraggableProgramStyled = styled.article`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: ${(props) => props.theme.silver};
-  padding: 4px;
+  border-top: 2px solid ${(props) => props.theme.white};
+  border-left: 2px solid ${(props) => props.theme.white};
+  border-right: 2px solid ${(props) => props.theme.silver};
+  border-bottom: 2px solid ${(props) => props.theme.silver};
 `;
 
 export const HeaderStyled = styled.header`
