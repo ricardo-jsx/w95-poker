@@ -1,18 +1,39 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { getRunningProcessesInOrder } from 'store/ducks/processes';
+import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { getRunningProcessesInOrder, displayProcess, minimizeProcess } from 'store/ducks/processes';
 
 import Process from './Process';
-import { TaskbarStyled } from './Taskbar.styled';
+
+const StyledTaskbar = styled.footer`
+  display: flex;
+  align-items: center;
+  background-color: ${(props) => props.theme.silver};
+  height: 30px;
+  width: 100vw;
+  padding: 0 2px;
+  border-top: ridge 4px white;
+  z-index: 999;
+  padding-left: 80px;
+`;
 
 export default function Taskbar() {
   const processes = useSelector(getRunningProcessesInOrder);
+  const dispatch = useDispatch();
+
+  const onDisplayProcess = (processId) => dispatch(displayProcess(processId));
+  const onMinimizeProcess = (processId) => dispatch(minimizeProcess(processId));
 
   return (
-    <TaskbarStyled>
+    <StyledTaskbar>
       {processes.map((process) => (
-        <Process process={process} key={process.id} />
+        <Process
+          key={process.id}
+          process={process}
+          displayProcess={onDisplayProcess}
+          minimizeProcess={onMinimizeProcess}
+        />
       ))}
-    </TaskbarStyled>
+    </StyledTaskbar>
   );
 }

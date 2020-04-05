@@ -17,8 +17,7 @@ const NotepadStyled = styled.textarea`
 
 export default function Notepad({ initialContent, process }) {
   return (
-    <DraggableProgram processId={process.id}>
-      <DraggableProgram.Header process={process} programName={Notepad.name} />
+    <DraggableProgram process={process}>
       <Menu>
         <Menu.Item label="File">
           <Menu.Item label="New File" onClick={() => console.log('Creating a new file...')} />

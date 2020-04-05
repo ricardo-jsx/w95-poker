@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { minimizeProcess, closeProcess, maximizeProcess, focusProcess } from 'store/ducks/processes';
 
-export default function useProgramActions(processId) {
+export default function useProcessActions(processId) {
   const dispatch = useDispatch();
 
   const minimize = () => dispatch(minimizeProcess(processId));

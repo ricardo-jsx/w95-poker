@@ -1,21 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
-import { isProcessMinimized, minimizeProcess, displayProcess } from 'store/ducks/processes';
-import { ProcessStyled } from './Taskbar.styled';
+import { isProcessMinimized } from 'store/ducks/processes';
 
-export default function Process({ process }) {
+const StyledProcess = styled.button`
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border: 2px ${(props) => (props.isMinimized ? 'outset' : 'inset')} ${(props) => props.theme.silver};
+  width: 170px;
+  font-family: Fixedsys;
+  font-weight: bold;
+  outline: none;
+
+  &:active {
+    border-style: ${(props) => (props.isMinimized ? 'inset' : 'outset')};
+  }
+
+  &:before {
+    content: '';
+    display: inline-block;
+    background-image: url(${(props) => props.processIcon});
+    background-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export default function Process({ process, displayProcess, minimizeProcess }) {
   const isMinimized = useSelector(isProcessMinimized(process.id));
-  const dispatch = useDispatch();
 
-  const toggleProcess = () =>
-    isMinimized ? dispatch(displayProcess(process.id)) : dispatch(minimizeProcess(process.id));
+  const toggleProcess = () => (isMinimized ? displayProcess(process.id) : minimizeProcess(process.id));
 
   return (
-    <ProcessStyled processIcon={process.icon} onClick={toggleProcess} isMinimized={isMinimized}>
+    <StyledProcess role="button" processIcon={process.icon} onClick={toggleProcess} isMinimized={isMinimized}>
       {process.name}
-    </ProcessStyled>
+    </StyledProcess>
   );
 }
 
@@ -25,4 +47,6 @@ Process.propTypes = {
     name: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
   }).isRequired,
+  displayProcess: PropTypes.func.isRequired,
+  minimizeProcess: PropTypes.func.isRequired,
 };
