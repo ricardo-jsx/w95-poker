@@ -21,16 +21,21 @@ export default function Notepad({ initialContent, process }) {
       <DraggableProgram.Header process={process} programName={Notepad.name} />
       <Menu>
         <Menu.Item label="File">
-          <Menu.Item label="New File" />
-          <Menu.Item label="File" />
-          <Menu.Item label="File" />
-          <Menu.Item label="File" />
+          <Menu.Item label="New File" onClick={() => console.log('Creating a new file...')} />
+          <Menu.Item label="TODO" />
+          <Menu.Item label="TODO" />
+          <Menu.Item label="TODO" />
         </Menu.Item>
-        <Menu.Item label="Edit" />
+        <Menu.Item label="Edit">
+          <Menu.Item label="New File" />
+          <Menu.Item label="TODO" />
+          <Menu.Item label="TODO" />
+          <Menu.Item label="TODO" />
+        </Menu.Item>
         <Menu.Item label="Search" />
         <Menu.Item label="Help" />
       </Menu>
-      <NotepadStyled>{initialContent}</NotepadStyled>
+      <NotepadStyled defaultValue={initialContent}></NotepadStyled>
     </DraggableProgram>
   );
 }

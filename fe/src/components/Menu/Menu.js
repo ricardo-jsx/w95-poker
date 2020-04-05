@@ -11,16 +11,18 @@ const StyledMenu = styled.ul`
 export default function Menu({ direction, children }) {
   const [open, setOpen] = useState(-1);
 
+  const handleItemClick = (itemOnClick, index) => () => {
+    setOpen(open === index ? -1 : index);
+    itemOnClick();
+  };
+
   return (
     <StyledMenu>
       {React.Children.map(children, (child, i) => {
         return React.cloneElement(child, {
           root: true,
-          parentOffset: { x: 0, y: 26 },
           open: i === open,
-          onClick() {
-            setOpen(i);
-          },
+          onClick: handleItemClick(child.props.onClick, i),
         });
       })}
     </StyledMenu>

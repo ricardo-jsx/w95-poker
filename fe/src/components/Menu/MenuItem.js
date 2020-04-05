@@ -51,5 +51,5 @@ MenuItem.propTypes = {
 MenuItem.defaultProps = {
   root: false,
   onClick() {},
-  parentOffset: { x: 0, y: 0 },
+  parentOffset: { x: 0, y: 26 },
 };
