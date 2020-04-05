@@ -19,7 +19,17 @@ export default function Notepad({ initialContent, process }) {
   return (
     <DraggableProgram processId={process.id}>
       <DraggableProgram.Header process={process} programName={Notepad.name} />
-      <Menu></Menu>
+      <Menu>
+        <Menu.Item label="File">
+          <Menu.Item label="New File" />
+          <Menu.Item label="File" />
+          <Menu.Item label="File" />
+          <Menu.Item label="File" />
+        </Menu.Item>
+        <Menu.Item label="Edit" />
+        <Menu.Item label="Search" />
+        <Menu.Item label="Help" />
+      </Menu>
       <NotepadStyled>{initialContent}</NotepadStyled>
     </DraggableProgram>
   );

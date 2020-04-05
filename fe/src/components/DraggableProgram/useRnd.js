@@ -14,7 +14,7 @@ export default function useRnd(window, isMaximized) {
       setPosition({ x: 0, y: 0 });
       setSize({ width: window.innerWidth, height: window.innerHeight });
     }
-  }, [isMaximized]);
+  }, [window, isMaximized]);
 
   function onDragStop(_e, { x, y }) {
     setPosition({ x, y });
