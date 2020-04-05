@@ -8,7 +8,7 @@ const StyledMenu = styled.ul`
   background: ${(props) => props.theme.silver};
 `;
 
-export default function Menu({ direction, children }) {
+export default function Menu({ children }) {
   const [open, setOpen] = useState(-1);
 
   const handleItemClick = (itemOnClick, index) => () => {
