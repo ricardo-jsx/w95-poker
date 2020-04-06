@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`store/ducks/processes should close a process 1`] = `
+Object {
+  "executionOrder": Array [
+    Object {
+      "id": "456",
+      "name": "Poker",
+    },
+  ],
+  "running": Array [
+    Object {
+      "id": "456",
+      "name": "Poker",
+    },
+  ],
+}
+`;
+
+exports[`store/ducks/processes should display a minimized process 1`] = `
+Object {
+  "executionOrder": Array [
+    Object {
+      "id": "456",
+      "name": "Poker",
+    },
+    Object {
+      "id": "123",
+      "name": "Notepad",
+    },
+  ],
+  "running": Array [
+    Object {
+      "id": "456",
+      "name": "Poker",
+    },
+    Object {
+      "id": "123",
+      "minimized": false,
+      "name": "Notepad",
+    },
+  ],
+}
+`;
+
+exports[`store/ducks/processes should maximize a visible process 1`] = `
+Object {
+  "executionOrder": Array [
+    Object {
+      "id": "456",
+      "name": "Poker",
+    },
+    Object {
+      "id": "123",
+      "name": "Notepad",
+    },
+  ],
+  "running": Array [
+    Object {
+      "id": "123",
+      "minimized": true,
+      "name": "Notepad",
+    },
+    Object {
+      "id": "456",
+      "maximized": true,
+      "minimized": false,
+      "name": "Poker",
+    },
+  ],
+}
+`;
+
+exports[`store/ducks/processes should minimize a visible process 1`] = `
+Object {
+  "executionOrder": Array [
+    Object {
+      "id": "456",
+      "name": "Poker",
+    },
+    Object {
+      "id": "123",
+      "name": "Notepad",
+    },
+  ],
+  "running": Array [
+    Object {
+      "id": "456",
+      "minimized": true,
+      "name": "Poker",
+    },
+    Object {
+      "id": "123",
+      "minimized": true,
+      "name": "Notepad",
+    },
+  ],
+}
+`;
+
+exports[`store/ducks/processes should start a new process 1`] = `
+Object {
+  "executionOrder": Array [
+    Object {
+      "id": "456",
+      "name": "Poker",
+    },
+    Object {
+      "id": "123",
+      "name": "Notepad",
+    },
+    Object {
+      "icon": "base64",
+      "id": "789",
+      "name": "Solietaire",
+    },
+  ],
+  "running": Array [
+    Object {
+      "id": "123",
+      "minimized": true,
+      "name": "Notepad",
+    },
+    Object {
+      "id": "456",
+      "name": "Poker",
+    },
+    Object {
+      "icon": "base64",
+      "id": "789",
+      "name": "Solietaire",
+    },
+  ],
+}
+`;

@@ -1,7 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { getRunningProcessesInOrder, displayProcess, minimizeProcess } from 'store/ducks/processes';
+import * as R from 'ramda';
+import {
+  getRunningProcessesInOrder,
+  getRunningProcesses,
+  displayProcess,
+  minimizeProcess,
+} from 'store/ducks/processes';
 
 import Process from './Process';
 
@@ -18,8 +24,9 @@ const StyledTaskbar = styled.footer`
 `;
 
 export default function Taskbar() {
-  const processes = useSelector(getRunningProcessesInOrder);
   const dispatch = useDispatch();
+  const processes = useSelector(getRunningProcessesInOrder);
+  const focusedProcessId = R.pipe(useSelector, R.last, R.prop('id'))(getRunningProcesses);
 
   const onDisplayProcess = (processId) => dispatch(displayProcess(processId));
   const onMinimizeProcess = (processId) => dispatch(minimizeProcess(processId));
@@ -30,6 +37,7 @@ export default function Taskbar() {
         <Process
           key={process.id}
           process={process}
+          isFocused={process.id === focusedProcessId}
           displayProcess={onDisplayProcess}
           minimizeProcess={onMinimizeProcess}
         />
