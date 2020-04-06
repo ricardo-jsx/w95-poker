@@ -27,7 +27,7 @@ export default function DraggableProgram({ process, name, children, window, inde
     >
       <DraggableProgramStyled isMinimized={isMinimized} isMaximized={isMaximized}>
         <Header process={process} programName={name} />
-        <div onClick={onFocusProcess} style={{ height: '100%' }}>
+        <div onClick={onFocusProcess} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           {children}
         </div>
       </DraggableProgramStyled>

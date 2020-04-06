@@ -1,15 +1,24 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 } from 'uuid';
 
-import { getRunningProcessesId, startProcess, getRunningProcesses } from 'store/ducks/processes';
-import { reject, not, includes, pipe, prop, values, __, map } from 'ramda';
+import { startProcess, getRunningProcesses } from 'store/ducks/processes';
 
 export default function ProgramManager({ children }) {
-  const processes = useSelector(getRunningProcesses);
-  const processesId = useSelector(getRunningProcessesId);
-  const [runningPrograms, setRunningPrograms] = useState({});
   const dispatch = useDispatch();
+  const [runningPrograms, setRunningPrograms] = useState({});
+  const processes = useSelector(getRunningProcesses);
+
+  useEffect(() => {
+    // If true, there's a process that was closed somewhere else
+    if (processes.length < Object.keys(runningPrograms).length) {
+      const programs = processes.reduce((acc, { id }) => {
+        return { ...acc, [id]: runningPrograms[id] };
+      }, {});
+
+      setRunningPrograms(programs);
+    }
+  }, [processes, runningPrograms]);
 
   const onStartProgram = (Component, { name, icon, ...props }) => {
     const id = v4();
@@ -19,25 +28,13 @@ export default function ProgramManager({ children }) {
     dispatch(startProcess(id, name, icon));
   };
 
-  const programs = useMemo(() => {
-    const removeDeadProcesses = reject(pipe(prop('id'), pipe(includes(__, processesId), not)));
-
-    const addProcessProps = map((obj) => {
-      const process = processes.find((p) => p.id === obj.id);
-      const index = processes.findIndex((p) => p.id === obj.id);
-
-      return { ...obj, process, index };
-    });
-
-    return pipe(values, removeDeadProcesses, addProcessProps)(runningPrograms);
-  }, [processesId, runningPrograms, processes]);
-
   return (
     <>
       {children(onStartProgram)}
-      {programs.map(({ Component, props, process, index }) => (
-        <Component {...props} process={process} key={process.id} index={index} />
-      ))}
+      {processes.map((process, i) => {
+        const { Component, props } = runningPrograms[process.id];
+        return <Component key={process.id} process={process} index={i} {...props} />;
+      })}
     </>
   );
 }

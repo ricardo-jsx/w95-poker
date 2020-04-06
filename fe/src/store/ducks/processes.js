@@ -1,4 +1,4 @@
-import { find, map, equals, prop, ifElse, pipe, assoc, identity, propOr, reject, merge, __, concat } from 'ramda';
+import { find, map, equals, prop, ifElse, pipe, identity, propOr, reject, merge, __ } from 'ramda';
 
 const INITIAL_STATE = {
   running: [],
