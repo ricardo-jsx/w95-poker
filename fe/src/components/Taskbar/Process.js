@@ -9,14 +9,15 @@ const StyledProcess = styled.button`
   display: flex;
   align-items: center;
   padding: 2px;
-  border: 2px ${(props) => (props.isMinimized ? 'outset' : 'inset')} ${(props) => props.theme.silver};
+  border: 2px ${(props) => (props.isMinimized || !props.isFocused ? 'outset' : 'inset')}
+    ${(props) => props.theme.silver};
   width: 170px;
   font-family: Fixedsys;
   font-weight: bold;
   outline: none;
 
   &:active {
-    border-style: ${(props) => (props.isMinimized ? 'inset' : 'outset')};
+    border-style: ${(props) => (props.isMinimized || !props.isFocused ? 'inset' : 'outset')};
   }
 
   &:before {
@@ -29,13 +30,19 @@ const StyledProcess = styled.button`
   }
 `;
 
-export default function Process({ process, displayProcess, minimizeProcess }) {
+export default function Process({ process, displayProcess, minimizeProcess, isFocused }) {
   const isMinimized = useSelector(isProcessMinimized(process.id));
 
   const toggleProcess = () => (isMinimized ? displayProcess(process.id) : minimizeProcess(process.id));
 
   return (
-    <StyledProcess role="button" processIcon={process.icon} onClick={toggleProcess} isMinimized={isMinimized}>
+    <StyledProcess
+      role="button"
+      processIcon={process.icon}
+      isMinimized={isMinimized}
+      isFocused={isFocused}
+      onClick={toggleProcess}
+    >
       {process.name}
     </StyledProcess>
   );

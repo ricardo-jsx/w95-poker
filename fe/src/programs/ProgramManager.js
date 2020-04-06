@@ -24,7 +24,9 @@ export default function ProgramManager({ children }) {
 
     const addProcessProps = map((obj) => {
       const process = processes.find((p) => p.id === obj.id);
-      return { ...obj, process };
+      const index = processes.findIndex((p) => p.id === obj.id);
+
+      return { ...obj, process, index };
     });
 
     return pipe(values, removeDeadProcesses, addProcessProps)(runningPrograms);
@@ -33,8 +35,8 @@ export default function ProgramManager({ children }) {
   return (
     <>
       {children(onStartProgram)}
-      {programs.map(({ Component, props, process }) => (
-        <Component {...props} process={process} key={process.id} />
+      {programs.map(({ Component, props, process, index }) => (
+        <Component {...props} process={process} key={process.id} index={index} />
       ))}
     </>
   );

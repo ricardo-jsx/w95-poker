@@ -1,23 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Rnd } from 'react-rnd';
-import { isProcessMinimized, isProcessMaximized } from 'store/ducks/processes';
+import { isProcessMinimized, isProcessMaximized, displayProcess } from 'store/ducks/processes';
 
 import { DraggableProgramStyled } from './DraggableProgram.styled';
 import Header from './Header';
 import useRnd from './useRnd';
 
-export default function DraggableProgram({ process, name, children, window }) {
+export default function DraggableProgram({ process, name, children, window, index }) {
   const isMinimized = useSelector(isProcessMinimized(process.id));
   const isMaximized = useSelector(isProcessMaximized(process.id));
-  const rnd = useRnd(window, isMaximized);
+  const dispatch = useDispatch();
+  const rndProps = useRnd(window, isMaximized);
+
+  const onFocusProcess = () => dispatch(displayProcess(process.id));
 
   return (
-    <Rnd {...rnd} dragHandleClassName="header" minWidth="300" minHeight="300">
+    <Rnd
+      {...rndProps}
+      onDragStart={onFocusProcess}
+      style={{ zIndex: index }}
+      dragHandleClassName="header"
+      minWidth="300"
+      minHeight="300"
+    >
       <DraggableProgramStyled isMinimized={isMinimized} isMaximized={isMaximized}>
         <Header process={process} programName={name} />
-        {children}
+        <div onClick={onFocusProcess} style={{ height: '100%' }}>
+          {children}
+        </div>
       </DraggableProgramStyled>
     </Rnd>
   );

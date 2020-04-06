@@ -15,9 +15,9 @@ const NotepadStyled = styled.textarea`
   resize: none;
 `;
 
-export default function Notepad({ initialContent, process }) {
+export default function Notepad({ initialContent, process, ...programProps }) {
   return (
-    <DraggableProgram process={process}>
+    <DraggableProgram process={process} {...programProps}>
       <Menu>
         <Menu.Item label="File">
           <Menu.Item label="New File" onClick={() => console.log('Creating a new file...')} />

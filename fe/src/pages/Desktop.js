@@ -16,8 +16,11 @@ export default function Desktop() {
             name="README"
             onStartProgram={(props) => onStartProgram(Notepad, { ...props, initialContent: readme.content })}
           />
-          <Icons.Poker name="Poker" />
-          <Icons.RecycleBin name="Recycle Bin" />
+          <Icons.Poker
+            name="Poker"
+            onStartProgram={(props) => onStartProgram(Notepad, { ...props, initialContent: readme.content })}
+          />
+          <Icons.RecycleBin name="Recycle Bin" onStartProgram={() => console.log('Starting Recycle Bin')} />
         </DesktopStyled>
       )}
     </ProgramManager>

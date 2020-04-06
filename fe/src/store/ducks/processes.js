@@ -1,4 +1,4 @@
-import { find, map, equals, prop, ifElse, pipe, assoc, identity, propOr, reject, merge, __ } from 'ramda';
+import { find, map, equals, prop, ifElse, pipe, assoc, identity, propOr, reject, merge, __, concat } from 'ramda';
 
 const INITIAL_STATE = {
   running: [],
@@ -16,19 +16,21 @@ export default function reducer(state = INITIAL_STATE, action) {
     }
 
     case 'DISPLAY_PROCESS': {
-      const running = map(
-        ifElse(pipe(prop('id'), equals(action.payload)), assoc('minimized', false), identity),
-        state.running
-      );
+      const hasSameId = pipe(prop('id'), equals(action.payload));
+
+      const process = find(hasSameId, state.running);
+      const otherProcesses = reject(hasSameId, state.running);
+      const running = [...otherProcesses, { ...process, minimized: false }];
 
       return { ...state, running };
     }
 
     case 'MINIMIZE_PROCESS': {
-      const running = map(
-        ifElse(pipe(prop('id'), equals(action.payload)), assoc('minimized', true), identity),
-        state.running
-      );
+      const hasSameId = pipe(prop('id'), equals(action.payload));
+
+      const process = find(hasSameId, state.running);
+      const otherProcesses = reject(hasSameId, state.running);
+      const running = [{ ...process, minimized: true }, ...otherProcesses];
 
       return { ...state, running };
     }
