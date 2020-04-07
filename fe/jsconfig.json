@@ -3,5 +3,6 @@
     "baseUrl": "src",
     "module": "es6"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "typeAcquisition": { "include": ["jest"] }
 }

@@ -14,7 +14,7 @@ export default function Header({ process, programName }) {
   return (
     <HeaderStyled processIcon={process.icon} className="header">
       <span>
-        {process.name} - {programName}
+        {process.name} {programName && `- ${programName}`}
       </span>
       <div className="actions">
         <ActionStyled icon={Minimize} onClick={minimize} />
@@ -26,5 +26,5 @@ export default function Header({ process, programName }) {
 }
 
 Header.propTypes = {
-  programName: PropTypes.string.isRequired,
+  programName: PropTypes.string,
 };
