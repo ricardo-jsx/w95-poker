@@ -46,9 +46,11 @@ DraggableProgram.propTypes = {
     innerWidth: PropTypes.number,
     innerHeigth: PropTypes.number,
   }),
+  index: PropTypes.string,
 };
 
 DraggableProgram.defaultProps = {
   defaultPosition: {},
   window,
+  index: 0,
 };

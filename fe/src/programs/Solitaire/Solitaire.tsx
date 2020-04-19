@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DraggableProgram from 'components/DraggableProgram/index';
-import { useDispatch } from 'react-redux';
-import { createNewGame } from 'store/ducks/programs/solitaire';
+import { createNewGame, getGameByProcessId } from 'store/ducks/programs/solitaire';
 
 export default function Solitaire({ process, ...programProps }: Props) {
   const dispatch = useDispatch();
+  const game = useSelector(getGameByProcessId(process.id));
 
   useEffect(() => {
     dispatch(createNewGame(process.id));
   }, [process, dispatch]);
+
+  console.log(game);
 
   return (
     <DraggableProgram name="Solitaire" process={process} {...programProps}>
@@ -24,7 +27,6 @@ interface Props {
     name: string;
     icon: string;
   };
-  index: number;
 }
 
 Solitaire.defaultProps = {

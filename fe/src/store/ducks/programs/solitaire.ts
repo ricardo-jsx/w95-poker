@@ -2,6 +2,8 @@ import cards from 'resources/cards/index';
 import shuffle from 'utils/shuffle';
 import createPiles from 'utils/createPiles';
 
+import type { RootState } from 'store';
+
 const INITIAL_STATE: State = {
   games: {},
 };
@@ -27,18 +29,22 @@ export default function (state = INITIAL_STATE, action: Action) {
 }
 
 export const createNewGame = (processId: string): Action => ({ type: 'NEW_GAME', payload: processId });
+export const getGameByProcessId = (processId: string) => (state: RootState): Game =>
+  state.programs.solitaire.games[processId];
 
 interface Action {
   type: string;
   payload: any;
 }
 
+type Game = {
+  piles: [any];
+  deal: [any];
+  foundation: [[any]];
+};
+
 interface State {
   games: {
-    [id: string]: {
-      piles: [any];
-      deal: [any];
-      foundation: [[any]];
-    };
+    [id: string]: Game;
   };
 }
